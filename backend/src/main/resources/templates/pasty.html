@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Pasty</title>
+
+		<link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.min.css">
+		<link rel="stylesheet" href="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.css">
+		<link rel="stylesheet" href="/webjars/pasty/pasty.min.css" />
+
+		<script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+		<script src="https://unpkg.com/prismjs/components/prism-core.min.js"></script>
+		<script src="https://unpkg.com/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
+		<script src="https://unpkg.com/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
+		<script src="/webjars/pasty/pasty.min.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<div id="title" class="title">Pasty</div>
+			<div class="menu" th:if="${code == null}">
+				<select id="lang" class="drop">
+					<option selected="selected" value="none">Text</option>
+					<option th:each="entry : ${langs}" th:value="${entry.key}">[[${entry.value}]]</option>
+				</select>
+			</div>
+			<div class="buttons">
+				<svg id="newBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<title>New Document</title>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+				</svg>
+				<svg id="saveBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<title>Save Document</title>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+				</svg>
+				<svg id="editBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<title>Edit Document</title>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+				</svg>
+				<svg id="shareBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<title>Share Document</title>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+				</svg>
+				<svg id="aboutBtn" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<title>About</title>
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
+			</div>
+		</div>
+		<pre class="line-numbers" th:if="${code != null}"><code id="code" class="code" th:classappend="${lang}">[[${code}]]</code></pre>
+		<textarea id="text" class="text" spellcheck="false" th:if="${code == null}">[[${doc}]]</textarea>
+		<input type="hidden" id="key" th:if="${key != null}" th:value="${key}">
+	</body>
+</html>

@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  pasty:
+    image: pasty
+    container_name: pasty
+    environment:
+      - STORAGE=FILE
+      - KEYGEN=PHONETIC
+      - LANGS=MIN
+    volumes:
+      - D:/docker/pasty:/data
+    ports:
+      - "8080:8080"

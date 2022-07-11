@@ -1,0 +1,33 @@
+{
+  "name": "pasty-frontend",
+  "version": "1.0.0",
+  "description": "Frontend code for Pasty",
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "gulp build",
+    "lint": "",
+    "test": ""
+  },
+  "author": "Kyle Fricilone",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/gulp": "^4.0.9",
+    "@types/gulp-clean-css": "^4.3.0",
+    "@types/gulp-rename": "^2.0.1",
+    "@types/gulp-sass": "^5.0.0",
+    "@types/gulp-sourcemaps": "^0.0.35",
+    "@types/gulp-uglify": "^3.0.7",
+    "@types/jquery": "^3.5.14",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "^3.0.2",
+    "sass": "^1.53.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
+}

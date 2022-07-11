@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=EXAMPLE_USER
+      - MONGO_INITDB_ROOT_PASSWORD=EXAMPLE_PASS
+    volumes:
+      - D:/docker/mongo:/data/db
+  pasty:
+    image: pasty
+    container_name: pasty
+    depends_on:
+      - mongo
+    environment:
+      - STORAGE=MONGO
+      - MONGO_CONNECTION=mongodb://EXAMPLE_USER:EXAMPLE_PASS@mongo:27017
+      - MONGO_DATABASE=pasty
+      - KEYGEN=PHONETIC
+      - LANGS=MIN
+    volumes:
+      - D:/docker/pasty:/data
+    ports:
+      - "8080:8080"

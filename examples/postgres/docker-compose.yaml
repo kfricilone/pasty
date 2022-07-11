@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=EXAMPLE_USER
+      - POSTGRES_PASSWORD=EXAMPLE_PASS
+      - POSTGRES_DB=pasty
+    volumes:
+      - D:/docker/postgres:/var/lib/postgresql/data
+  pasty:
+    image: pasty
+    container_name: pasty
+    depends_on:
+      - postgres
+    environment:
+      - STORAGE=POSTGRES
+      - POSTGRES_CONNECTION=postgresql://postgres:5432/pasty?user=EXAMPLE_USER&password=EXAMPLE_PASS
+      - KEYGEN=PHONETIC
+      - LANGS=MIN
+    volumes:
+      - D:/docker/pasty:/data
+    ports:
+      - "8080:8080"
