@@ -23,7 +23,6 @@ import com.github.michaelbull.retry.policy.limitAttempts
 import com.github.michaelbull.retry.retry
 import me.kfricilone.pasty.keygen.Keygen
 import me.kfricilone.pasty.storage.Storage
-import java.lang.IllegalStateException
 
 /**
  * Created by Kyle Fricilone on Nov 05, 2021.
@@ -62,7 +61,7 @@ public class Service(
         val key = keygen.createKey()
         when (runCatching { storage.load(key) }) {
             is Err -> key
-            else -> throw IllegalStateException("Could not find unused key in $RETRY_LIMIT attempt(s)")
+            else -> error("Could not find unused key in $RETRY_LIMIT attempt(s)")
         }
     }
 

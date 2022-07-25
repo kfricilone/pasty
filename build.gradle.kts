@@ -18,8 +18,16 @@ plugins {
     alias(libs.plugins.webjar) apply false
 }
 
-group = Props.group
-version = Props.version
+val jvmVersion = JavaVersion.VERSION_11
+val commonArgs = listOf(
+    "-opt-in=io.ktor.server.locations.KtorExperimentalLocationsAPI",
+    "-opt-in=io.lettuce.core.ExperimentalLettuceCoroutinesApi",
+    "-Xinline-classes"
+)
+val jvmArgs = commonArgs + listOf(
+    "-Xjsr305=strict"
+)
+
 description = "Pasty is a paste tool with a dark theme by default and code syntax highlighting"
 
 tasks.withType<Wrapper> {
@@ -36,14 +44,12 @@ tasks.withType<DependencyUpdatesTask> {
     }
 }
 
-repositories {
-    mavenCentral()
+allprojects {
+    group = "me.kfricilone"
+    version = "1.0.0-SNAPSHOT"
 }
 
 subprojects {
-    group = Props.group
-    version = Props.version
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -71,20 +77,20 @@ subprojects {
         configure<JavaPluginExtension> {
             withSourcesJar()
 
-            sourceCompatibility = Props.jvmVersion
-            targetCompatibility = Props.jvmVersion
+            sourceCompatibility = jvmVersion
+            targetCompatibility = jvmVersion
         }
     }
 
     tasks.withType<JavaCompile> {
         options.encoding = StandardCharsets.UTF_8.name()
-        options.release.set(Props.jvmVersion.toString().toInt())
+        options.release.set(jvmVersion.toString().toInt())
     }
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = Props.jvmVersion.toString()
-            freeCompilerArgs = Props.jvmArgs
+            jvmTarget = jvmVersion.toString()
+            freeCompilerArgs = jvmArgs
         }
     }
 
@@ -94,11 +100,11 @@ subprojects {
     }
 
     tasks.withType<Detekt>().configureEach {
-        jvmTarget = Props.jvmVersion.toString()
+        jvmTarget = jvmVersion.toString()
     }
 
     tasks.withType<DetektCreateBaselineTask>().configureEach {
-        jvmTarget = Props.jvmVersion.toString()
+        jvmTarget = jvmVersion.toString()
     }
 
     plugins.withType<MavenPublishPlugin> {
@@ -108,7 +114,7 @@ subprojects {
             publications.withType<MavenPublication> {
                 pom {
                     url.set("https://github.com/kfricilone/${rootProject.name}")
-                    inceptionYear.set("2021")
+                    inceptionYear.set("2022")
 
                     licenses {
                         license {
