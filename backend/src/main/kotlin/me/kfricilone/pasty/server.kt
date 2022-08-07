@@ -70,7 +70,10 @@ public fun main() {
         install(ConditionalHeaders)
         install(Webjars)
         install(Locations)
-        install(ContentNegotiation) { json() }
+        install(ContentNegotiation) {
+            json()
+            ignoreType<ThymeleafContent>()
+        }
         install(Authentication) {
             basic {
                 realm = "Access to the '/post' path"
