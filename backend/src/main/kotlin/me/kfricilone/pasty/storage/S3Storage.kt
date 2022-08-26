@@ -21,6 +21,7 @@ import aws.sdk.kotlin.runtime.endpoint.AwsEndpoint
 import aws.sdk.kotlin.runtime.endpoint.StaticEndpointResolver
 import aws.sdk.kotlin.services.s3.S3Client
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
+import aws.sdk.kotlin.services.s3.putObject
 import aws.smithy.kotlin.runtime.content.ByteStream
 import aws.smithy.kotlin.runtime.content.decodeToString
 
