@@ -17,13 +17,12 @@
 package me.kfricilone.pasty.storage
 
 import aws.sdk.kotlin.runtime.auth.credentials.StaticCredentialsProvider
-import aws.sdk.kotlin.runtime.endpoint.AwsEndpoint
-import aws.sdk.kotlin.runtime.endpoint.StaticEndpointResolver
 import aws.sdk.kotlin.services.s3.S3Client
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.putObject
 import aws.smithy.kotlin.runtime.content.ByteStream
 import aws.smithy.kotlin.runtime.content.decodeToString
+import aws.smithy.kotlin.runtime.net.Url
 
 /**
  * Created by Kyle Fricilone on Oct 26, 2021.
@@ -38,7 +37,7 @@ public class S3Storage(
 
     private val client: S3Client = S3Client {
         endpoint?.let {
-            endpointResolver = StaticEndpointResolver(AwsEndpoint(it))
+            endpointUrl = Url.parse(it)
         }
         credentialsProvider = StaticCredentialsProvider {
             accessKeyId = access
