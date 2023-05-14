@@ -24,6 +24,10 @@ tasks.webjarInstall {
     args.add("--silent")
 }
 
+tasks.webjarLint {
+    args.add("--silent")
+}
+
 tasks.webjarBuild {
     args.add("--silent")
 }

@@ -1,17 +1,17 @@
-$(function () {
-	$("#title").on("click", function () {
+$(() => {
+	$("#title").on("click", () => {
 		window.location.href = "/";
 	});
-	$("#newBtn").on("click", function () {
+	$("#newBtn").on("click", () => {
 		window.location.href = "/";
 	});
-	$("#editBtn").on("click", function () {
+	$("#editBtn").on("click", () => {
 		window.location.href = "/doc/" + $("#key").val() + "/edit";
 	});
-	$("#shareBtn").on("click", function () {
+	$("#shareBtn").on("click", () => {
 		navigator.clipboard.writeText(window.location.href);
 	});
-	$("#saveBtn").on("click", function () {
+	$("#saveBtn").on("click", () => {
 		$.ajax({
 			type: "POST",
 			url: "/doc",
@@ -21,7 +21,7 @@ $(function () {
 				text: $("#text").val()
 			}),
 			dataType: "json",
-			success: function (data) {
+			success: data => {
 				window.location.href = data.redirect
 			}
 		});
