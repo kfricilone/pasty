@@ -20,6 +20,7 @@ await esbuild.build({
 	entryPoints: ["src/main/ts/*.ts"],
 	entryNames: '[dir]/[name].min',
 	outdir: "build/dist",
+	target: "ES2017",
 	bundle: true,
 	minify: true,
 	sourcemap: true,

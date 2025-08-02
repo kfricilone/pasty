@@ -1,0 +1,196 @@
+public final class me/kfricilone/pasty/EditDocument {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lme/kfricilone/pasty/EditDocument;
+	public static synthetic fun copy$default (Lme/kfricilone/pasty/EditDocument;Ljava/lang/String;ILjava/lang/Object;)Lme/kfricilone/pasty/EditDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/GetDocument {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lme/kfricilone/pasty/GetDocument;
+	public static synthetic fun copy$default (Lme/kfricilone/pasty/GetDocument;Ljava/lang/String;ILjava/lang/Object;)Lme/kfricilone/pasty/GetDocument;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getKey ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/Index {
+	public fun <init> ()V
+}
+
+public final class me/kfricilone/pasty/Langs : java/lang/Enum {
+	public static final field ALL Lme/kfricilone/pasty/Langs;
+	public static final field Companion Lme/kfricilone/pasty/Langs$Companion;
+	public static final field KEY Ljava/lang/String;
+	public static final field MIN Lme/kfricilone/pasty/Langs;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getLangs ()Ljava/util/Map;
+	public static fun valueOf (Ljava/lang/String;)Lme/kfricilone/pasty/Langs;
+	public static fun values ()[Lme/kfricilone/pasty/Langs;
+}
+
+public final class me/kfricilone/pasty/Langs$Companion {
+	public final fun getDEFAULT ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/ModulesKt {
+	public static final fun getPastyModule ()Lorg/koin/core/module/Module;
+}
+
+public final class me/kfricilone/pasty/PostDocument {
+	public fun <init> ()V
+}
+
+public final class me/kfricilone/pasty/SaveDocumentRequest {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lme/kfricilone/pasty/SaveDocumentRequest;
+	public static synthetic fun copy$default (Lme/kfricilone/pasty/SaveDocumentRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lme/kfricilone/pasty/SaveDocumentRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLang ()Ljava/lang/String;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/SaveDocumentResponse {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lme/kfricilone/pasty/SaveDocumentResponse;
+	public static synthetic fun copy$default (Lme/kfricilone/pasty/SaveDocumentResponse;Ljava/lang/String;ILjava/lang/Object;)Lme/kfricilone/pasty/SaveDocumentResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRedirect ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/ServerKt {
+	public static final fun main ([Ljava/lang/String;)V
+	public static final fun module (Lio/ktor/server/application/Application;)V
+}
+
+public final class me/kfricilone/pasty/Service {
+	public fun <init> (Lme/kfricilone/pasty/keygen/Keygen;Lme/kfricilone/pasty/storage/Storage;)V
+	public final fun edit-ta8aW1Q (Lme/kfricilone/pasty/EditDocument;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun get-ta8aW1Q (Lme/kfricilone/pasty/GetDocument;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun post (Lme/kfricilone/pasty/SaveDocumentRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract class me/kfricilone/pasty/keygen/Keygen {
+	public fun <init> (I)V
+	public abstract fun createKey ()Ljava/lang/String;
+	public fun getLength ()I
+}
+
+public final class me/kfricilone/pasty/keygen/Keygens : java/lang/Enum {
+	public static final field Companion Lme/kfricilone/pasty/keygen/Keygens$Companion;
+	public static final field DEFAULT_LEN Ljava/lang/String;
+	public static final field KEY Ljava/lang/String;
+	public static final field LEN_KEY Ljava/lang/String;
+	public static final field PHONETIC Lme/kfricilone/pasty/keygen/Keygens;
+	public static final field RANDOM Lme/kfricilone/pasty/keygen/Keygens;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lme/kfricilone/pasty/keygen/Keygens;
+	public static fun values ()[Lme/kfricilone/pasty/keygen/Keygens;
+}
+
+public final class me/kfricilone/pasty/keygen/Keygens$Companion {
+	public final fun getDEFAULT ()Ljava/lang/String;
+}
+
+public final class me/kfricilone/pasty/keygen/PhoneticKeygen : me/kfricilone/pasty/keygen/Keygen {
+	public fun <init> (I)V
+	public fun createKey ()Ljava/lang/String;
+	public fun getLength ()I
+}
+
+public final class me/kfricilone/pasty/keygen/RandomKeygen : me/kfricilone/pasty/keygen/Keygen {
+	public fun <init> (I)V
+	public fun createKey ()Ljava/lang/String;
+	public fun getLength ()I
+}
+
+public final class me/kfricilone/pasty/storage/FileStorage : me/kfricilone/pasty/storage/Storage {
+	public fun <init> ()V
+	public fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/MongoStorage : me/kfricilone/pasty/storage/Storage {
+	public static final field Companion Lme/kfricilone/pasty/storage/MongoStorage$Companion;
+	public static final field MONGO_CONNECTION_KEY Ljava/lang/String;
+	public static final field MONGO_DATABASE_KEY Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/MongoStorage$Companion {
+}
+
+public final class me/kfricilone/pasty/storage/PostgresStorage : me/kfricilone/pasty/storage/Storage {
+	public static final field Companion Lme/kfricilone/pasty/storage/PostgresStorage$Companion;
+	public static final field POSTGRES_CONNECTION_KEY Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;)V
+	public fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/PostgresStorage$Companion {
+}
+
+public final class me/kfricilone/pasty/storage/RedisStorage : me/kfricilone/pasty/storage/Storage {
+	public static final field Companion Lme/kfricilone/pasty/storage/RedisStorage$Companion;
+	public static final field REDIS_CONNECTION_KEY Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;)V
+	public fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/RedisStorage$Companion {
+}
+
+public final class me/kfricilone/pasty/storage/S3Storage : me/kfricilone/pasty/storage/Storage {
+	public static final field Companion Lme/kfricilone/pasty/storage/S3Storage$Companion;
+	public static final field S3_ACCESS_KEY Ljava/lang/String;
+	public static final field S3_BUCKET_KEY Ljava/lang/String;
+	public static final field S3_ENDPOINT_KEY Ljava/lang/String;
+	public static final field S3_REGION_KEY Ljava/lang/String;
+	public static final field S3_SECRET_KEY Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/S3Storage$Companion {
+}
+
+public abstract interface class me/kfricilone/pasty/storage/Storage {
+	public abstract fun load (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun save (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/kfricilone/pasty/storage/Storages : java/lang/Enum {
+	public static final field Companion Lme/kfricilone/pasty/storage/Storages$Companion;
+	public static final field FILE Lme/kfricilone/pasty/storage/Storages;
+	public static final field KEY Ljava/lang/String;
+	public static final field MONGO Lme/kfricilone/pasty/storage/Storages;
+	public static final field POSTGRES Lme/kfricilone/pasty/storage/Storages;
+	public static final field REDIS Lme/kfricilone/pasty/storage/Storages;
+	public static final field S3 Lme/kfricilone/pasty/storage/Storages;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lme/kfricilone/pasty/storage/Storages;
+	public static fun values ()[Lme/kfricilone/pasty/storage/Storages;
+}
+
+public final class me/kfricilone/pasty/storage/Storages$Companion {
+	public final fun getDEFAULT ()Ljava/lang/String;
+}
+

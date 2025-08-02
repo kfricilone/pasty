@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("build-logic")
     repositories {
         mavenCentral()
         gradlePluginPortal()
@@ -9,15 +8,12 @@ pluginManagement {
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
-        mavenLocal()
+        gradlePluginPortal()
     }
 }
 
-rootProject.name = "pasty"
+plugins {
+    id("dev.panuszewski.typesafe-conventions") version "0.7.4"
+}
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-include(
-    "frontend",
-    "backend"
-)
+rootProject.name = "build-logic"

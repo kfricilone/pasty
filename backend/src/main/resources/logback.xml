@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="false">
-    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{MM-dd HH:mm} %highlight(%5p) --- %cyan(%-30.30c{29}) : %cyan(%m%n%rEx)</pattern>
-        </encoder>
-    </appender>
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{MM-dd HH:mm} %highlight(%5p) --- %cyan(%-30.30c{29}) : %cyan(%m%n%rEx)</pattern>
+    </encoder>
+  </appender>
 
-    <root level="info">
-        <appender-ref ref="CONSOLE" />
-    </root>
+  <root level="info">
+    <appender-ref ref="CONSOLE" />
+  </root>
 
-    <logger name="ktor.application" level="trace" additivity="false">
-        <appender-ref ref="CONSOLE" />
-    </logger>
+  <logger name="ktor.application" level="trace" additivity="false">
+    <appender-ref ref="CONSOLE" />
+  </logger>
+
 </configuration>

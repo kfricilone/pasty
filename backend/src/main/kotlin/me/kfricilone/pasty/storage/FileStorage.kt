@@ -22,7 +22,9 @@ import java.io.File
  * Created by Kyle Fricilone on Oct 26, 2021.
  */
 public class FileStorage : Storage {
+
     override suspend fun load(key: String): String = File("$BASE_DIR/$key").readText()
+
     override suspend fun save(key: String, value: String): Unit = File("$BASE_DIR/$key").writeText(value)
 
     private companion object {

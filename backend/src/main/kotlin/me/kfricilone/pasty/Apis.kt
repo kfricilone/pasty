@@ -16,20 +16,35 @@
 
 package me.kfricilone.pasty
 
-import io.ktor.server.locations.Location
+import io.ktor.resources.Resource
+import kotlinx.serialization.Serializable
 
 /**
  * Created by Kyle Fricilone on Nov 05, 2021.
  */
-
-@Location("/")
+@Resource("/")
 public class Index
 
-@Location("/doc")
+@Resource("/doc")
 public class PostDocument
 
-@Location("/doc/{key}")
-public data class GetDocument(val key: String)
+@Resource("/doc/{key}")
+public data class GetDocument(
+    val key: String
+)
 
-@Location("/doc/{key}/edit")
-public data class EditDocument(val key: String)
+@Resource("/doc/{key}/edit")
+public data class EditDocument(
+    val key: String
+)
+
+@Serializable
+public data class SaveDocumentRequest(
+    val lang: String,
+    val text: String
+)
+
+@Serializable
+public data class SaveDocumentResponse(
+    val redirect: String
+)

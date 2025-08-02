@@ -20,7 +20,7 @@ import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.insert
-import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 /**
@@ -44,7 +44,7 @@ public class PostgresStorage(
     }
 
     override suspend fun load(key: String): String = transaction(db) {
-        Documents.select { Documents.key eq key }.single()[Documents.value]
+        Documents.selectAll().where { Documents.key eq key }.single()[Documents.value]
     }
 
     override suspend fun save(key: String, value: String) {
@@ -57,6 +57,6 @@ public class PostgresStorage(
     }
 
     public companion object {
-        public const val PostgresConnectionKey: String = "POSTGRES_CONNECTION"
+        public const val POSTGRES_CONNECTION_KEY: String = "POSTGRES_CONNECTION"
     }
 }

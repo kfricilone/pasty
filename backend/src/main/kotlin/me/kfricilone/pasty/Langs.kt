@@ -327,7 +327,7 @@ public enum class Langs(
     );
 
     public companion object {
-        public const val Key: String = "LANGS"
-        public val Default: String = MIN.name
+        public const val KEY: String = "LANGS"
+        public val DEFAULT: String = MIN.name
     }
 }

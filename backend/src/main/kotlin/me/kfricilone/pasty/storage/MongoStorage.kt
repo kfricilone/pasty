@@ -26,7 +26,10 @@ import org.litote.kmongo.reactivestreams.KMongo
  */
 
 @Serializable
-private data class Document(val key: String, val value: String)
+private data class Document(
+    val key: String,
+    val value: String
+)
 
 public class MongoStorage(
     connection: String,
@@ -45,7 +48,7 @@ public class MongoStorage(
     }
 
     public companion object {
-        public const val MongoDatabaseKey: String = "MONGO_DATABASE"
-        public const val MongoConnectionKey: String = "MONGO_CONNECTION"
+        public const val MONGO_DATABASE_KEY: String = "MONGO_DATABASE"
+        public const val MONGO_CONNECTION_KEY: String = "MONGO_CONNECTION"
     }
 }

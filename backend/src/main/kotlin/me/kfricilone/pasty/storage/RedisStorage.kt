@@ -31,11 +31,14 @@ public class RedisStorage(
 
     override suspend fun load(key: String): String = commands.get(key)!!
 
-    override suspend fun save(key: String, value: String) {
+    override suspend fun save(
+        key: String,
+        value: String
+    ) {
         commands.set(key, value)
     }
 
     public companion object {
-        public const val RedisConnectionKey: String = "REDIS_CONNECTION"
+        public const val REDIS_CONNECTION_KEY: String = "REDIS_CONNECTION"
     }
 }

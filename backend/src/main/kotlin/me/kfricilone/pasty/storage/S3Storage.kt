@@ -22,7 +22,7 @@ import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.putObject
 import aws.smithy.kotlin.runtime.content.ByteStream
 import aws.smithy.kotlin.runtime.content.decodeToString
-import aws.smithy.kotlin.runtime.net.Url
+import aws.smithy.kotlin.runtime.net.url.Url
 
 /**
  * Created by Kyle Fricilone on Oct 26, 2021.
@@ -64,10 +64,10 @@ public class S3Storage(
     }
 
     public companion object {
-        public const val S3EndpointKey: String = "S3_ENDPOINT"
-        public const val S3BucketKey: String = "S3_BUCKET"
-        public const val S3RegionKey: String = "S3_REGION"
-        public const val S3AccessKey: String = "S3_ACCESS"
-        public const val S3SecretKey: String = "S3_SECRET"
+        public const val S3_ENDPOINT_KEY: String = "S3_ENDPOINT"
+        public const val S3_BUCKET_KEY: String = "S3_BUCKET"
+        public const val S3_REGION_KEY: String = "S3_REGION"
+        public const val S3_ACCESS_KEY: String = "S3_ACCESS"
+        public const val S3_SECRET_KEY: String = "S3_SECRET"
     }
 }

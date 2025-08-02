@@ -20,6 +20,11 @@ package me.kfricilone.pasty.storage
  * Created by Kyle Fricilone on Oct 26, 2021.
  */
 public interface Storage {
+
     public suspend fun load(key: String): String
-    public suspend fun save(key: String, value: String)
+
+    public suspend fun save(
+        key: String,
+        value: String
+    )
 }

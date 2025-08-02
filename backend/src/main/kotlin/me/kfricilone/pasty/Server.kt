@@ -16,25 +16,26 @@
 
 package me.kfricilone.pasty
 
+import com.github.michaelbull.result.fold
 import com.github.michaelbull.result.onFailure
 import com.github.michaelbull.result.onSuccess
 import io.ktor.serialization.kotlinx.json.json
+import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.auth.Authentication
 import io.ktor.server.auth.UserHashedTableAuth
 import io.ktor.server.auth.authenticate
 import io.ktor.server.auth.basic
-import io.ktor.server.cio.CIO
-import io.ktor.server.engine.embeddedServer
-import io.ktor.server.locations.Locations
-import io.ktor.server.locations.get
-import io.ktor.server.locations.post
-import io.ktor.server.plugins.callloging.CallLogging
+import io.ktor.server.cio.EngineMain
+import io.ktor.server.plugins.calllogging.CallLogging
 import io.ktor.server.plugins.conditionalheaders.ConditionalHeaders
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.defaultheaders.DefaultHeaders
 import io.ktor.server.request.receive
+import io.ktor.server.resources.Resources
+import io.ktor.server.resources.get
+import io.ktor.server.resources.post
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondRedirect
 import io.ktor.server.routing.Route
@@ -53,7 +54,9 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver
 
 private val digest = getDigestFunction("SHA-256") { "pasty${it.length}" }
 
-public fun main() {
+public fun main(args: Array<String>): Unit = EngineMain.main(args)
+
+public fun Application.module() {
     val users = System.getenv("AUTH_USERS")
     val table = mutableMapOf<String, ByteArray>()
     users?.split(",")?.forEach { user ->
@@ -64,47 +67,47 @@ public fun main() {
 
     val userTable = UserHashedTableAuth(digest, table)
 
-    embeddedServer(CIO, port = 8080, host = "0.0.0.0") {
-        install(CallLogging)
-        install(DefaultHeaders)
-        install(ConditionalHeaders)
-        install(Webjars)
-        install(Locations)
-        install(ContentNegotiation) {
-            json()
-            ignoreType<ThymeleafContent>()
+    install(DefaultHeaders)
+    install(ConditionalHeaders)
+    install(Webjars)
+    install(Resources)
+    install(CallLogging) {
+        disableDefaultColors()
+    }
+    install(ContentNegotiation) {
+        json()
+        ignoreType<ThymeleafContent>()
+    }
+    install(Authentication) {
+        basic {
+            realm = "Access to the '/post' path"
+            validate { userTable.authenticate(it) }
         }
-        install(Authentication) {
-            basic {
-                realm = "Access to the '/post' path"
-                validate { userTable.authenticate(it) }
+    }
+    install(Thymeleaf) {
+        setTemplateResolver(
+            ClassLoaderTemplateResolver().apply {
+                prefix = "templates/"
+                suffix = ".html"
+                characterEncoding = "utf-8"
             }
-        }
-        install(Thymeleaf) {
-            setTemplateResolver(
-                ClassLoaderTemplateResolver().apply {
-                    prefix = "templates/"
-                    suffix = ".html"
-                    characterEncoding = "utf-8"
-                }
-            )
-        }
-        install(Koin) {
-            slf4jLogger(Level.ERROR)
-            environmentProperties()
-            modules(pastyModule)
-        }
+        )
+    }
+    install(Koin) {
+        slf4jLogger(Level.ERROR)
+        environmentProperties()
+        modules(pastyModule)
+    }
 
-        routing {
-            index()
-            getDocument()
-            editDocument()
-            when {
-                table.isEmpty() -> postDocument()
-                else -> authenticate { postDocument() }
-            }
+    routing {
+        index()
+        getDocument()
+        editDocument()
+        when {
+            table.isEmpty() -> postDocument()
+            else -> authenticate { postDocument() }
         }
-    }.start(wait = true)
+    }
 }
 
 private fun Route.index() {
@@ -125,11 +128,11 @@ private fun Route.getDocument() {
     val service by inject<Service>()
     val model: MutableMap<String, Any> = mutableMapOf()
     get<GetDocument> {
-        service.get(it, model)
+        service
+            .get(it, model)
             .onSuccess {
                 call.respond(ThymeleafContent("pasty", model))
-            }
-            .onFailure {
+            }.onFailure {
                 call.respondRedirect("/")
             }
     }
@@ -140,11 +143,11 @@ private fun Route.editDocument() {
     val langs by inject<Langs>(named("langs"))
     val model: MutableMap<String, Any> = mutableMapOf("langs" to langs.langs)
     get<EditDocument> {
-        service.edit(it, model)
+        service
+            .edit(it, model)
             .onSuccess {
                 call.respond(ThymeleafContent("pasty", model))
-            }
-            .onFailure {
+            }.onFailure {
                 call.respondRedirect("/")
             }
     }

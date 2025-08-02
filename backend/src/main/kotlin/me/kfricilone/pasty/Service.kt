@@ -16,10 +16,9 @@
 
 package me.kfricilone.pasty
 
-import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Result
 import com.github.michaelbull.result.runCatching
-import com.github.michaelbull.retry.policy.limitAttempts
+import com.github.michaelbull.retry.policy.stopAtAttempts
 import com.github.michaelbull.retry.retry
 import me.kfricilone.pasty.keygen.Keygen
 import me.kfricilone.pasty.storage.Storage
@@ -57,10 +56,11 @@ public class Service(
     public suspend fun edit(doc: EditDocument, model: MutableMap<String, Any>): Result<Unit, Throwable> =
         runCatching { model["doc"] = storage.load(doc.key) }
 
-    private suspend fun generateKey() = retry(limitAttempts(RETRY_LIMIT)) {
+    private suspend fun generateKey() = retry(stopAtAttempts(RETRY_LIMIT)) {
         val key = keygen.createKey()
-        when (runCatching { storage.load(key) }) {
-            is Err -> key
+        val result = runCatching { storage.load(key) }
+        when {
+            result.isErr -> key
             else -> error("Could not find unused key in $RETRY_LIMIT attempt(s)")
         }
     }

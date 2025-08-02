@@ -1,5 +1,5 @@
 plugins {
-    id("com.coditory.webjar")
+    alias(libs.plugins.webjar)
 }
 
 webjar {

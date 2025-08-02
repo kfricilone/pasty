@@ -34,34 +34,34 @@ import org.koin.dsl.module
  */
 public val pastyModule: Module = module {
     single {
-        val len = getProperty(Keygens.LenKey, Keygens.DefaultLen).toInt()
-        when (Keygens.valueOf(getProperty(Keygens.Key, Keygens.Default))) {
+        val len = getProperty(Keygens.LEN_KEY, Keygens.DEFAULT_LEN).toInt()
+        when (Keygens.valueOf(getProperty(Keygens.KEY, Keygens.DEFAULT))) {
             Keygens.RANDOM -> RandomKeygen(len)
             Keygens.PHONETIC -> PhoneticKeygen(len)
         }
     }
 
     single {
-        when (Storages.valueOf(getProperty(Storages.Key, Storages.Default))) {
+        when (Storages.valueOf(getProperty(Storages.KEY, Storages.DEFAULT))) {
             Storages.FILE -> FileStorage()
             Storages.S3 -> S3Storage(
-                getPropertyOrNull(S3Storage.S3EndpointKey),
-                getProperty(S3Storage.S3RegionKey),
-                getProperty(S3Storage.S3AccessKey),
-                getProperty(S3Storage.S3SecretKey),
-                getProperty(S3Storage.S3BucketKey)
+                getPropertyOrNull(S3Storage.S3_ENDPOINT_KEY),
+                getProperty(S3Storage.S3_REGION_KEY),
+                getProperty(S3Storage.S3_ACCESS_KEY),
+                getProperty(S3Storage.S3_SECRET_KEY),
+                getProperty(S3Storage.S3_BUCKET_KEY)
             )
             Storages.MONGO -> MongoStorage(
-                getProperty(MongoStorage.MongoConnectionKey),
-                getProperty(MongoStorage.MongoDatabaseKey)
+                getProperty(MongoStorage.MONGO_CONNECTION_KEY),
+                getProperty(MongoStorage.MONGO_DATABASE_KEY)
             )
-            Storages.POSTGRES -> PostgresStorage(getProperty(PostgresStorage.PostgresConnectionKey))
-            Storages.REDIS -> RedisStorage(getProperty(RedisStorage.RedisConnectionKey))
+            Storages.POSTGRES -> PostgresStorage(getProperty(PostgresStorage.POSTGRES_CONNECTION_KEY))
+            Storages.REDIS -> RedisStorage(getProperty(RedisStorage.REDIS_CONNECTION_KEY))
         }
     }
 
     single(named("langs")) {
-        Langs.valueOf(getProperty(Langs.Key, Langs.Default))
+        Langs.valueOf(getProperty(Langs.KEY, Langs.DEFAULT))
     }
 
     single { Service(get(), get()) }

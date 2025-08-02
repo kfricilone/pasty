@@ -28,7 +28,7 @@ public enum class Storages {
     REDIS;
 
     public companion object {
-        public const val Key: String = "STORAGE"
-        public val Default: String = FILE.name
+        public const val KEY: String = "STORAGE"
+        public val DEFAULT: String = FILE.name
     }
 }

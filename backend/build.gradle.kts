@@ -1,31 +1,18 @@
 plugins {
-    kotlin("jvm")
-    kotlin("plugin.serialization")
-    id("org.jetbrains.kotlinx.kover")
-    id("org.jmailen.kotlinter")
-    id("io.gitlab.arturbosch.detekt")
-    id("org.jetbrains.dokka")
-    id("com.google.cloud.tools.jib")
-    application
+    id("application-conventions")
 }
 
 dependencies {
-    implementation(kotlin("stdlib", libs.versions.kotlin.get()))
-    implementation(libs.bundles.ktor)
-    implementation(libs.koin.ktor)
-    implementation(libs.koin.logger)
     implementation(libs.aws.s3)
-    implementation(libs.kmongo)
     implementation(libs.bundles.exposed)
-    implementation(libs.postgresql)
-    implementation(libs.lettuce.core)
+    implementation(libs.bundles.koin)
+    implementation(libs.bundles.ktor)
+    implementation(libs.kmongo)
     implementation(libs.kotlin.result)
     implementation(libs.kotlin.retry)
+    implementation(libs.lettuce.core)
+    implementation(libs.postgresql)
     implementation(projects.frontend)
-}
-
-kotlin {
-    explicitApi()
 }
 
 application {
@@ -33,15 +20,8 @@ application {
 }
 
 jib {
-    from {
-        image = "bellsoft/liberica-openjre-alpine:11"
-    }
-    to {
-        image = rootProject.name
-        tags = setOf("${rootProject.version}")
-    }
     container {
-        creationTime.set("USE_CURRENT_TIMESTAMP")
+        mainClass = "me.kfricilone.pasty.ServerKt"
         ports = listOf("8080")
     }
 }

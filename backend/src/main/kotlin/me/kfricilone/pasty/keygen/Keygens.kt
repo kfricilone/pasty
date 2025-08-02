@@ -25,9 +25,9 @@ public enum class Keygens {
     PHONETIC;
 
     public companion object {
-        public const val Key: String = "KEYGEN"
-        public const val LenKey: String = "KEYGEN_LEN"
-        public val Default: String = RANDOM.name
-        public const val DefaultLen: String = "10"
+        public const val KEY: String = "KEYGEN"
+        public const val LEN_KEY: String = "KEYGEN_LEN"
+        public val DEFAULT: String = RANDOM.name
+        public const val DEFAULT_LEN: String = "10"
     }
 }

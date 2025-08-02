@@ -1,60 +1,88 @@
 [versions]
-gradle = "8.1.1"
-dependencies = "0.46.0"
-kotlin = "1.8.21"
-kover = "0.6.1"
-kotlinter = "3.14.0"
-detekt = "1.22.0"
-dokka = "1.8.10"
-jib = "3.3.2"
+aws = "1.5.9"
+compatibility = "0.18.1"
+dependencies = "0.52.0"
+detekt = "1.23.8"
+dokka = "2.0.0"
+exposed = "0.61.0"
+gradle = "9.0.0"
+java = "21"
+jib = "3.4.5"
+kmongo = "5.2.1"
+koin = "4.1.0"
+kotlin = "2.2.0"
+kotlinter = "5.2.0"
+kover = "0.9.1"
+ktor = "3.2.3"
+lettuce = "6.7.1.RELEASE"
+logback = "1.5.18"
+logging = "7.0.10"
+node = "24.4.1"
+npm = "11.5.2"
+postgres = "42.7.7"
+publisher = "2.2.0-dev-71"
+result = "2.0.1"
+retry = "2.0.1"
 webjar = "1.3.1"
-node = "20.1.0"
-npm = "9.6.6"
-ktor = "2.3.0"
-koin = "3.4.0"
-aws = "0.24.0-beta"
-kmongo = "4.9.0"
-exposed = "0.41.1"
-postgres = "42.6.0"
-lettuce = "6.2.4.RELEASE"
-result = "1.1.17"
-retry = "1.0.9"
-logback = "1.4.7"
 
 [plugins]
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "compatibility" }
 dependencies = { id = "com.github.ben-manes.versions", version.ref = "dependencies" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 jib = { id = "com.google.cloud.tools.jib", version.ref = "jib" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-libs-publisher = { id = "org.jetbrains.kotlin.libs.publisher", version.ref = "publisher" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 webjar = { id = "com.coditory.webjar", version.ref = "webjar" }
 
 [libraries]
-ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
-ktor-server-locations = { module = "io.ktor:ktor-server-locations", version.ref = "ktor" }
-ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
-ktor-server-thymeleaf = { module = "io.ktor:ktor-server-thymeleaf", version.ref = "ktor" }
-ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-server-webjars = { module = "io.ktor:ktor-server-webjars", version.ref = "ktor" }
-ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
-ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor" }
-ktor-server-conditional-headers = { module = "io.ktor:ktor-server-conditional-headers", version.ref = "ktor" }
-koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
-koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
 aws-s3 = { module = "aws.sdk.kotlin:s3", version.ref = "aws" }
-kmongo = { module = "org.litote.kmongo:kmongo-coroutine-serialization", version.ref = "kmongo" }
 exposed-core = { module = "org.jetbrains.exposed:exposed-core", version.ref = "exposed" }
 exposed-jdbc = { module = "org.jetbrains.exposed:exposed-jdbc", version.ref = "exposed" }
-postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
-lettuce-core = { module = "io.lettuce:lettuce-core", version.ref = "lettuce" }
+kmongo = { module = "org.litote.kmongo:kmongo-coroutine-serialization", version.ref = "kmongo" }
+koin-ktor = { module = "io.insert-koin:koin-ktor", version.ref = "koin" }
+koin-logger = { module = "io.insert-koin:koin-logger-slf4j", version.ref = "koin" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "logging" }
 kotlin-result = { module = "com.michael-bull.kotlin-result:kotlin-result", version.ref = "result" }
 kotlin-retry = { module = "com.michael-bull.kotlin-retry:kotlin-retry", version.ref = "retry" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-server-auth = { module = "io.ktor:ktor-server-auth", version.ref = "ktor" }
+ktor-server-call-logging = { module = "io.ktor:ktor-server-call-logging", version.ref = "ktor" }
+ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor" }
+ktor-server-conditional-headers = { module = "io.ktor:ktor-server-conditional-headers", version.ref = "ktor" }
+ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
+ktor-server-default-headers = { module = "io.ktor:ktor-server-default-headers", version.ref = "ktor" }
+ktor-server-resources = { module = "io.ktor:ktor-server-resources", version.ref = "ktor" }
+ktor-server-thymeleaf = { module = "io.ktor:ktor-server-thymeleaf", version.ref = "ktor" }
+ktor-server-webjars = { module = "io.ktor:ktor-server-webjars", version.ref = "ktor" }
+lettuce-core = { module = "io.lettuce:lettuce-core", version.ref = "lettuce" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgres" }
 
 [bundles]
-ktor = ["ktor-server-cio", "ktor-server-auth", "ktor-server-locations", "ktor-server-thymeleaf", "ktor-server-content-negotiation", "ktor-serialization-kotlinx-json", "ktor-server-webjars", "ktor-server-call-logging", "ktor-server-default-headers", "ktor-server-conditional-headers"]
-exposed = ["exposed-core", "exposed-jdbc"]
+ktor = [
+	"ktor-serialization-kotlinx-json",
+	"ktor-server-auth",
+	"ktor-server-call-logging",
+	"ktor-server-cio",
+	"ktor-server-conditional-headers",
+	"ktor-server-content-negotiation",
+	"ktor-server-default-headers",
+	"ktor-server-resources",
+	"ktor-server-thymeleaf",
+	"ktor-server-webjars"
+]
+
+koin = [
+	"koin-ktor",
+	"koin-logger"
+]
+
+exposed = [
+	"exposed-core",
+	"exposed-jdbc"
+]
